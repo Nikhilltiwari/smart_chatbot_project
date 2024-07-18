@@ -1,6 +1,7 @@
 from transformers import pipeline
 
-nlp = pipeline('question-answering', model='distilbert-base-cased-distilled-squad')
+# Using BERT model for question-answering
+nlp = pipeline('question-answering', model='bert-large-uncased-whole-word-masking-finetuned-squad')
 
 def process_nlp_query(query, context):
     result = nlp(question=query, context=context)
