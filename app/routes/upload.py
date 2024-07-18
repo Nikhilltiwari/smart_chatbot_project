@@ -21,3 +21,5 @@ def upload_file():
             return jsonify({'error': str(e)})
     return render_template('index.html', columns=df.columns.tolist())
 
+
+

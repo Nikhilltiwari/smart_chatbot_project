@@ -4,4 +4,7 @@ transformers==4.17.0
 matplotlib==3.5.1
 seaborn==0.11.2
 langchain
+openpyxl  # Required for reading .xlsx files
+xlrd      # Required for reading .xls files
+
 

@@ -6,3 +6,4 @@ nlp = pipeline('question-answering', model='bert-large-uncased-whole-word-maskin
 def get_nlp_pipeline():
     return nlp
 
+

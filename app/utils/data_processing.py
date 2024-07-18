@@ -1,7 +1,13 @@
 import pandas as pd
 
 def load_dataset(file):
-    df = pd.read_csv(file)
+    # Check file extension to determine how to load the dataset
+    if file.filename.endswith('.csv'):
+        df = pd.read_csv(file)
+    elif file.filename.endswith('.xls') or file.filename.endswith('.xlsx'):
+        df = pd.read_excel(file)
+    else:
+        raise ValueError("Unsupported file format. Please upload a .csv or .xls/.xlsx file.")
     return df
 
 def process_query(df, query):
