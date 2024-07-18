@@ -21,3 +21,4 @@ def create_app():
         return render_template('index.html')
 
     return app
+
