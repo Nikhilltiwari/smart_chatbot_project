@@ -25,3 +25,4 @@ def analyze_data():
         return jsonify({'error': str(e)})
 
 
+
