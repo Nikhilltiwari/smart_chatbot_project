@@ -2,9 +2,11 @@ from flask import Blueprint, request, jsonify
 import pandas as pd
 
 upload_bp = Blueprint('upload', __name__)
+df = pd.DataFrame()  # Global dataframe to store the dataset
 
 @upload_bp.route('/', methods=['POST'])
 def upload_file():
+    global df
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'})
     file = request.files['file']
