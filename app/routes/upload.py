@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect, url_for, jsonify
+from flask import Blueprint, request, render_template, jsonify
 import pandas as pd
 from app.utils.data_processing import load_dataset
 
@@ -16,7 +16,8 @@ def upload_file():
             return jsonify({'error': 'No selected file'})
         try:
             df = load_dataset(file)
-            return redirect(url_for('upload.upload_file'))
+            return render_template('index.html', columns=df.columns.tolist())
         except Exception as e:
             return jsonify({'error': str(e)})
     return render_template('index.html', columns=df.columns.tolist())
+

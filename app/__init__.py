@@ -1,7 +1,10 @@
 from flask import Flask, render_template
+import os
 
 def create_app():
-    app = Flask(__name__)
+    template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../templates'))
+    print(f"Template directory: {template_dir}")
+    app = Flask(__name__, template_folder=template_dir)
     app.config.from_object('config.Config')
 
     from .routes.upload import upload_bp
@@ -21,4 +24,7 @@ def create_app():
         return render_template('index.html')
 
     return app
+
+
+
 
