@@ -11,4 +11,3 @@ def create_app():
     app.register_blueprint(analyze_bp, url_prefix='/analyze')
 
     return app
-

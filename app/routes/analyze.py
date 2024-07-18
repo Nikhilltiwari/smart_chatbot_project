@@ -1,16 +1,22 @@
 from flask import Blueprint, request, jsonify
-import pandas as pd
+import pandas as pd  # Make sure to import pandas
+from app.utils.data_processing import process_query
 
 analyze_bp = Blueprint('analyze', __name__)
-df = pd.DataFrame()  # Placeholder for the uploaded dataset
+df = pd.DataFrame()  # Global dataframe to store the dataset
 
 @analyze_bp.route('/', methods=['POST'])
 def analyze_data():
     global df
+    if df.empty:
+        return jsonify({'error': 'No data available. Please upload a dataset first.'})
+    
     data = request.json
     query = data.get('query')
-    if 'average' in query:
-        column = query.split()[-1]
-        average = df[column].mean()
-        return jsonify({'average': average})
-    # Add more analysis types as needed
+
+    try:
+        result = process_query(df, query)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
