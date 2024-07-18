@@ -32,12 +32,15 @@
         document.getElementById('query-form').addEventListener('submit', function(event) {
             event.preventDefault();
             var query = document.getElementById('query').value;
-            fetch('/query/', {
+            var sessionId = localStorage.getItem('session_id') || Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('session_id', sessionId);
+
+            fetch('/analyze/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ query: query }),
+                body: JSON.stringify({ query: query, session_id: sessionId }),
             })
             .then(response => response.json())
             .then(data => {
@@ -48,5 +51,6 @@
     </script>
 </body>
 </html>
+
 
 

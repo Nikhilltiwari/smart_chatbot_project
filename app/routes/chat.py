@@ -10,4 +10,4 @@ def chat():
     query = data.get('query')
     session_id = data.get('session_id')
     response = context_manager.process(query, session_id)
-    return jsonify({'response': response})
+    return jsonify({'response': response, 'conversation': context_manager.get_conversation(session_id)})
