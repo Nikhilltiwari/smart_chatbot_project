@@ -33,3 +33,5 @@ def extract_column(query, operation):
             if i + 1 < len(words):
                 return words[i + 1]
     return None
+
+

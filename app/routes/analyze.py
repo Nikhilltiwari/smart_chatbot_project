@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-import pandas as pd  # Make sure to import pandas
+import pandas as pd
 from app.utils.data_processing import process_query
 
 analyze_bp = Blueprint('analyze', __name__)
